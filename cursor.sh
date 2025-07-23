@@ -11,7 +11,7 @@ caiDatCursor() {
         # Đường dẫn lưu AppImage và icon
         APPIMAGE_PATH="/opt/cursor.appimage"
         ICON_PATH="/opt/cursor.png"
-        DESKTOP_ENTRY_PATH="/home/$USER/.local/share/applications/cursor.desktop"
+        DESKTOP_ENTRY_PATH="/home/$USER/cursor.desktop"
 
         # Cài curl nếu chưa có
         if ! command -v curl &> /dev/null; then
