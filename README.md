@@ -51,6 +51,14 @@ Script sẽ:
 ```bash
 /opt/cursor.appimage --no-sandbox
 ```
+# Cài đặt tất cả các tool: 
+
+```bash
+curl -O https://raw.githubusercontent.com/sonnam0904/linux/main/install_all.sh
+chmod +x install_all.sh
+./install_all.sh
+
+```
 
 # Gỡ cài đặt Cursor
 
