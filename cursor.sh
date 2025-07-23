@@ -9,8 +9,8 @@ caiDatCursor() {
         ICON_URL="https://github.com/sonnam0904/linux/blob/main/cursor.jpg?raw=true"
 
         # Đường dẫn lưu AppImage và icon
-        APPIMAGE_PATH="/opt/cursor.appimage"
-        ICON_PATH="/opt/cursor.png"
+        APPIMAGE_PATH="/opt/cusor/cursor.appimage"
+        ICON_PATH="/opt/cusor/cursor.png"
         DESKTOP_ENTRY_PATH="/home/$USER/.local/share/applications/cursor.desktop"
 
         # Cài curl nếu chưa có
@@ -23,7 +23,7 @@ caiDatCursor() {
         # Tải Cursor AppImage
         echo "⬇️ Đang tải Cursor AppImage..."
         sudo curl -L $CURSOR_URL -o $APPIMAGE_PATH
-        sudo chmod +x $APPIMAGE_PATH
+        # sudo chmod +x $APPIMAGE_PATH
 
         # Tải icon
         echo "🖼️ Đang tải icon cho Cursor..."
