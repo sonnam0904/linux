@@ -32,7 +32,34 @@ wine /opt/lotuschat/Lotus.exe
 Hoặc tìm trong menu ứng dụng.  
 **Xài thôi 😎**
 
-## Gỡ cài đặt
+# Cài đặt Cursor AI IDE
+
+Cài đặt bằng script có sẵn:
+
+```bash
+curl -O https://raw.githubusercontent.com/sonnam0904/linux/main/cursor.sh
+chmod +x cursor.sh
+./cursor.sh
+```
+
+Script sẽ:
+
+- Tải Cursor AppImage về thư mục `/opt/`
+- Tải icon và tạo shortcut `Cursor AI IDE` trong menu ứng dụng
+- Có thể chạy từ menu hoặc gõ:
+
+```bash
+/opt/cursor.appimage --no-sandbox
+```
+
+# Gỡ cài đặt Cursor
+
+```bash
+sudo rm /opt/cursor.appimage /opt/cursor.png
+rm ~/.local/share/applications/cursor.desktop
+```
+
+# Gỡ cài đặt Lotus Chat
 
 ```bash
 sudo rm -rf '/opt/lotuschat/'
