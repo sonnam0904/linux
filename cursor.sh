@@ -9,9 +9,13 @@ caiDatCursor() {
         ICON_URL="https://github.com/sonnam0904/linux/blob/main/cursor.jpg?raw=true"
 
         # Đường dẫn lưu AppImage và icon
-        APPIMAGE_PATH="/opt/cursor/cursor.appimage"
-        ICON_PATH="/opt/cursor/cursor.jpg"
+        APPIMAGE_PATH="/opt/cursor.appimage"
+        ICON_PATH="/opt/cursor.png"
         DESKTOP_ENTRY_PATH="/home/$USER/.local/share/applications/cursor.desktop"
+
+        # Tạo thư mục nếu chưa có
+        sudo mkdir -p /opt
+        mkdir -p "$(dirname "$DESKTOP_ENTRY_PATH")"
 
         # Cài curl nếu chưa có
         if ! command -v curl &> /dev/null; then
@@ -22,17 +26,16 @@ caiDatCursor() {
 
         # Tải Cursor AppImage
         echo "⬇️ Đang tải Cursor AppImage..."
-        sudo curl -L $CURSOR_URL -o $APPIMAGE_PATH
-        # sudo chmod +x $APPIMAGE_PATH
+        sudo curl -L "$CURSOR_URL" -o "$APPIMAGE_PATH"
+        sudo chmod +x "$APPIMAGE_PATH"
 
         # Tải icon
         echo "🖼️ Đang tải icon cho Cursor..."
-        sudo curl -L $ICON_URL -o $ICON_PATH
+        sudo curl -L "$ICON_URL" -o "$ICON_PATH"
 
-        # Tạo file .desktop để thêm vào menu ứng dụng
+        # Tạo file .desktop
         echo "📂 Tạo shortcut trong menu ứng dụng..."
-        mkdir -p $(dirname $DESKTOP_ENTRY_PATH)
-        cat > $DESKTOP_ENTRY_PATH <<EOL
+        cat > "$DESKTOP_ENTRY_PATH" <<EOL
 [Desktop Entry]
 Name=Cursor AI IDE
 Exec=$APPIMAGE_PATH --no-sandbox
@@ -43,7 +46,7 @@ EOL
 
         echo "✅ Cài đặt hoàn tất! Cursor AI IDE đã có trong menu ứng dụng của bạn."
     else
-        echo "⚠️ Cursor AI IDE đã được cài trước đó tại /opt/cursor/cursor.appimage."
+        echo "⚠️ Cursor AI IDE đã được cài trước đó tại /opt/cursor.appimage."
     fi
 }
 
