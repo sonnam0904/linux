@@ -9,8 +9,8 @@ caiDatCursor() {
         ICON_URL="https://github.com/sonnam0904/linux/blob/main/cursor.jpg?raw=true"
 
         # Đường dẫn lưu AppImage và icon
-        APPIMAGE_PATH="/opt/cusor/cursor.appimage"
-        ICON_PATH="/opt/cusor/cursor.png"
+        APPIMAGE_PATH="/opt/cursor/cursor.appimage"
+        ICON_PATH="/opt/cursor/cursor.jpg"
         DESKTOP_ENTRY_PATH="/home/$USER/.local/share/applications/cursor.desktop"
 
         # Cài curl nếu chưa có
@@ -43,7 +43,7 @@ EOL
 
         echo "✅ Cài đặt hoàn tất! Cursor AI IDE đã có trong menu ứng dụng của bạn."
     else
-        echo "⚠️ Cursor AI IDE đã được cài trước đó tại /opt/cursor.appimage."
+        echo "⚠️ Cursor AI IDE đã được cài trước đó tại /opt/cursor/cursor.appimage."
     fi
 }
 
