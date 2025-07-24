@@ -62,7 +62,7 @@ chmod +x install_all.sh
 
 # Cài đặt Shell bash beauty
 
-Cài đặt bằng script có sẵn:
+B1: Cài đặt bằng script có sẵn:
 
 ```bash
 curl -O https://raw.githubusercontent.com/sonnam0904/linux/main/shell-beauty.sh
@@ -70,6 +70,17 @@ chmod +x shell-beauty.sh
 ./shell-beauty.sh
 
 ```
+
+B2: Cài lại plugin autocomplete
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# Thêm plugin vào ~/.zshrc nếu thiếu
+nano ~/.zshrc
+# Tìm dòng plugins=(...) → thêm zsh-autosuggestions vào
+
+# Reload config
+source ~/.zshrc
 
 Script sẽ:
 - Cài đặt Zsh + Oh My Zsh + Starship + Plugin
