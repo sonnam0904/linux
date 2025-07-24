@@ -60,6 +60,26 @@ chmod +x install_all.sh
 
 ```
 
+# Cài đặt Shell bash beauty
+
+Cài đặt bằng script có sẵn:
+
+```bash
+curl -O https://raw.githubusercontent.com/sonnam0904/linux/main/shell-beauty.sh
+chmod +x shell-beauty.sh
+./shell-beauty.sh
+
+```
+
+Script sẽ:
+- Cài đặt Zsh + Oh My Zsh + Starship + Plugin
+- Hoạt động tốt trên Ubuntu / Pop!_OS / Debian-based
+
+- Logout rồi login lại (quan trọng!)
+- Việc đổi shell chỉ áp dụng khi bạn mở session mới → nên bạn cần:
+
+- Đăng xuất khỏi user rồi đăng nhập lại hoặc Khởi động lại máy
+
 # Gỡ cài đặt Cursor
 
 ```bash
