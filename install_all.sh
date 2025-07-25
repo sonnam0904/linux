@@ -2,10 +2,14 @@
 
 echo "🚀 Bắt đầu cài đặt tất cả các tool..."
 
-# 1. Cài đặt Git
+# 1. Cài đặt Git & openVPN
 echo "🛠️ Cài đặt Git..."
 sudo apt update
 sudo apt install -y git
+echo "🛠️ Cài đặt openVPN..."
+sudo apt install -y openvpn
+echo "🛠️ Cài đặt Telegram desktop..."
+sudo apt install telegram-desktop
 
 # 2. Cài đặt ibus-unikey
 echo "🇻🇳 Cài đặt ibus-unikey để gõ tiếng Việt..."
