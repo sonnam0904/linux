@@ -40,9 +40,11 @@ installLotusChat() {
     cat > "$DESKTOP_ENTRY_PATH" <<EOL
 [Desktop Entry]
 Name=Lotus Chat
-Exec=wine $LOTUS_DIR/Lotus.exe
-Icon=$ICON_PATH
+Exec=bash -c 'env WINEPREFIX="$HOME/.wine" wine /opt/lotuschat/Lotus.exe'
 Type=Application
+StartupNotify=true
+Icon=/opt/lotuschat/lotus.png
+StartupWMClass=lotus.exe
 Categories=Network;Chat;
 EOL
 
