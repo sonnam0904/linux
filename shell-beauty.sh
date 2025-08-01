@@ -1,65 +1,55 @@
 #!/bin/bash
 
-echo "🌟 Bắt đầu setup shell đẹp... (Zsh + Oh-My-Zsh + Starship)"
+# Update hệ thống
+sudo apt update && sudo apt upgrade -y
 
-# Cài zsh nếu chưa có
-if ! command -v zsh &> /dev/null; then
-    echo "👉 Installing zsh..."
-    sudo apt update && sudo apt install -y zsh
+# 1. Cài Kitty (terminal GPU mượt)
+sudo apt install -y kitty
+
+# 2. Cài Zsh và Oh-My-Zsh
+sudo apt install -y zsh curl git
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# Đặt zsh làm shell mặc định
+# 3. Đặt Zsh làm shell mặc định
 chsh -s $(which zsh)
 
-# Cài Oh My Zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "⚙️ Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+# 4. Cài plugin Zsh
+ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
 
-# Cài plugin autosuggestions
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-    echo "✨ Installing zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-        ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
+# 5. Cài theme Powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-# Cài plugin syntax highlighting
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-    echo "✨ Installing zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-fi
+# 6. Config .zshrc
+sed -i 's/ZSH_THEME=".*"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
+sed -i 's/plugins=(.*)/plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
 
-# Bật plugin trong .zshrc
-sed -i 's/plugins=(.*)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
+# 7. Config Kitty (theme + font)
+mkdir -p ~/.config/kitty
+cat > ~/.config/kitty/kitty.conf << 'EOF'
+font_family      FiraCode Nerd Font
+font_size        14.0
+background_opacity 0.9
+enable_audio_bell no
 
-# Cài Starship prompt
-if ! command -v starship &> /dev/null; then
-    echo "🚀 Installing Starship prompt..."
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
-fi
+# Colorscheme (Dracula)
+include https://raw.githubusercontent.com/dracula/kitty/master/dracula.conf
 
-# Gắn starship vào .zshrc nếu chưa có
-if ! grep -q 'eval "$(starship init zsh)"' ~/.zshrc; then
-    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-fi
-
-# Cấu hình starship đơn giản
-mkdir -p ~/.config
-cat <<EOF > ~/.config/starship.toml
-add_newline = false
-
-[character]
-success_symbol = "[➜](bold green) "
-
-[git_branch]
-symbol = "🌱 "
-
-[directory]
-truncation_length = 3
+# Split & tab
+map ctrl+shift+enter new_window
+map ctrl+shift+t new_tab
+map ctrl+shift+left previous_tab
+map ctrl+shift+right next_tab
 EOF
 
-echo "✅ Xong! Khởi động lại terminal hoặc gõ: exec zsh"
+# 8. Cài font FiraCode Nerd Font
+mkdir -p ~/.local/share/fonts
+wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip -O /tmp/FiraCode.zip
+unzip -o /tmp/FiraCode.zip -d ~/.local/share/fonts
+fc-cache -fv
 
-
+echo "✅ Cài đặt hoàn tất! Hãy logout/login rồi mở Kitty."
