@@ -5,7 +5,7 @@ caiDatCursor() {
         echo "🚀 Bắt đầu cài đặt Cursor AI IDE..."
 
         # Link tải AppImage và icon
-        CURSOR_URL="https://downloads.cursor.com/production/faa03b17cce93e8a80b7d62d57f5eda6bb6ab9fa/linux/x64/Cursor-1.2.2-x86_64.AppImage"
+        CURSOR_URL="https://downloads.cursor.com/production/7584ea888f7eb7bf76c9873a8f71b28f034a982e/linux/x64/Cursor-2.1.25-x86_64.AppImage"
         ICON_URL="https://raw.githubusercontent.com/sonnam0904/linux/refs/heads/main/cursor.png"
 
         # Đường dẫn lưu AppImage và icon
