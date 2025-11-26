@@ -6,7 +6,6 @@ installLotusChat() {
     ICON_URL="https://github.com/sonnam0904/linux/blob/main/lotus_ic.png?raw=true"
     ICON_PATH="/opt/lotuschat/lotus.png"
     SETUP_URL="https://lotuspc.mediacdn.vn/LotusUpdater/win/setup/Setup_LChat_v3.9.2.exe"
-    INNOUNP_URL="https://github.com/jrathlev/InnoUnpacker-Windows-GUI/raw/refs/heads/master/innounp-2/bin/innounp-2.zip"
 
     echo "🔧 Checking wine..."
     if ! command -v wine &>/dev/null; then
@@ -14,23 +13,29 @@ installLotusChat() {
         sudo apt update && sudo apt install -y wine
     fi
 
-    echo "📦 Downloading innounp..."
+    echo "📦 Checking innoextract..."
+    if ! command -v innoextract &>/dev/null; then
+        echo "🚀 Installing innoextract..."
+        sudo apt install -y innoextract
+    fi
+
+    echo "📥 Downloading Lotus Chat installer..."
     mkdir -p /tmp/lotuschat
     cd /tmp/lotuschat || exit
-    curl -LO "$INNOUNP_URL"
-    unzip -o innounp-2.zip
-    rm innounp-2.zip Unpack.ico
-
-    echo "📥 Downloading Lotus Chat setup..."
     curl -LO "$SETUP_URL"
 
-    echo "📂 Extracting Lotus Chat installer..."
-    wine innounp.exe -m Setup_LChat_v3.9.2.exe -e
+    echo "📂 Extracting Lotus Chat installer with innoextract..."
+    innoextract Setup_LChat_v3.9.2.exe
+
+    if [[ ! -f app/Lotus.exe ]]; then
+        echo "❌ Extraction failed: Lotus.exe not found!"
+        exit 1
+    fi
 
     echo "📁 Installing to $LOTUS_DIR..."
     sudo rm -rf "$LOTUS_DIR"
     sudo mkdir -p "$LOTUS_DIR"
-    sudo mv Lotus.exe Updater.exe "$LOTUS_DIR"
+    sudo mv app/Lotus.exe app/Updater.exe "$LOTUS_DIR"
 
     echo "🖼️ Downloading icon..."
     sudo curl -L "$ICON_URL" -o "$ICON_PATH"
@@ -52,4 +57,3 @@ EOL
 }
 
 installLotusChat
-
