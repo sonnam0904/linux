@@ -25,7 +25,7 @@ installLotusChat() {
     curl -LO "$SETUP_URL"
 
     echo "📂 Extracting Lotus Chat installer..."
-    wine innounp.exe -m Setup_LChat_v3.8.8.exe -e
+    wine innounp.exe -m Setup_LChat_v3.9.2.exe -e
 
     echo "📁 Installing to $LOTUS_DIR..."
     sudo rm -rf "$LOTUS_DIR"
