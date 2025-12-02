@@ -5,7 +5,7 @@ installLotusChat() {
     DESKTOP_ENTRY_PATH="$HOME/.local/share/applications/lotuschat.desktop"
     ICON_URL="https://github.com/sonnam0904/linux/blob/main/lotus_ic.png?raw=true"
     ICON_PATH="/opt/lotuschat/lotus.png"
-    SETUP_URL="https://lotuspc.mediacdn.vn/LotusUpdater/win/setup/Setup_LChat_v3.9.2.exe"
+    SETUP_URL="https://lotuspc.mediacdn.vn/LotusUpdater/win/setup/Setup_LChat_v3.8.8.exe"
 
     echo "🔧 Checking wine..."
     if ! command -v wine &>/dev/null; then
@@ -25,7 +25,7 @@ installLotusChat() {
     curl -LO "$SETUP_URL"
 
     echo "📂 Extracting Lotus Chat installer with innoextract..."
-    innoextract Setup_LChat_v3.9.2.exe
+    innoextract Setup_LChat_v3.8.8.exe
 
     if [[ ! -f app/Lotus.exe ]]; then
         echo "❌ Extraction failed: Lotus.exe not found!"
