@@ -25,7 +25,7 @@ installLotusChat() {
     curl -LO "$SETUP_URL"
 
     echo "📂 Extracting Lotus Chat installer with innoextract..."
-    innoextract Setup_LChat_v3.8.8.exe
+    innoextract Setup_LChat_v3.9.4.exe
 
     if [[ ! -f app/Lotus.exe ]]; then
         echo "❌ Extraction failed: Lotus.exe not found!"
