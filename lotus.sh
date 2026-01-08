@@ -5,7 +5,7 @@ installLotusChat() {
     DESKTOP_ENTRY_PATH="$HOME/.local/share/applications/lotuschat.desktop"
     ICON_URL="https://github.com/sonnam0904/linux/blob/main/lotus_ic.png?raw=true"
     ICON_PATH="/opt/lotuschat/lotus.png"
-    SETUP_URL="https://lotuspc.mediacdn.vn/LotusUpdater/win/setup/Setup_LChat_v3.8.8.exe"
+    SETUP_URL="https://lotuspc.mediacdn.vn/LotusUpdater/win/setup/Setup_LChat_v3.9.4.exe"
 
     echo "🔧 Checking wine..."
     if ! command -v wine &>/dev/null; then
